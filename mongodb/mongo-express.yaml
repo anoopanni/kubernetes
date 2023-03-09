@@ -34,7 +34,7 @@ spec:
                valueFrom:
                   configMapKeyRef:
                     name: mongodb-configmap
-                    key: database_url 
+                    key: database_url
                
 --- 
 
@@ -44,7 +44,7 @@ metadata:
   name: mongo-express-service
 spec:
   selector:
-    app: mongo-express-service
+    app: mongo-express
   type: LoadBalancer
   ports:
     - protocol: TCP
