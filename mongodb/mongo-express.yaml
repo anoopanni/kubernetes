@@ -15,7 +15,7 @@ spec:
           app: mongo-express # Label for the ReplicaSet/Pod
       spec:
           # strategy:
-          # type: RollingUpdate #new versions are rolled out gradually to pods to avoid downtime
+          # type: RollingUpdate #new versions are rolled out gradually to the pods to avoid downtime
           containers:
            - name: mongo-express
              image: mongo-express
