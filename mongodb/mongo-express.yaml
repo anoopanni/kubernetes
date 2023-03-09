@@ -7,18 +7,20 @@ metadata:
 spec:
    replicas: 1
    selector:
-      matchLabels:
+      matchLabels:    # Control by deployment for the ReplicaSet/Pod with this label
         app: mongo-express
    template:
       metadata:
         labels:
-          app: mongo-express
+          app: mongo-express # Label for the ReplicaSet/Pod
       spec:
+          # strategy:
+          # type: RollingUpdate #new versions are rolled out gradually to pods to avoid downtime
           containers:
            - name: mongo-express
              image: mongo-express
              ports:
-             - containerPort: 8081
+             - containerPort: 8081 # Expose port from container
              env:
              - name: ME_CONFIG_MONGODB_ADMINUSERNAME
                valueFrom:
@@ -44,10 +46,10 @@ metadata:
   name: mongo-express-service
 spec:
   selector:
-    app: mongo-express
+    app: mongo-express # selecting docker container
   type: LoadBalancer
   ports:
     - protocol: TCP
       port: 8081 #internal port of the container
       targetPort: 8081 # external port of the container
-      nodePort: 30000 # exposure to outside world
+      nodePort: 30000 # exposure to outside world 
